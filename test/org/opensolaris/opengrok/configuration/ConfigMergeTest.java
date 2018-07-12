@@ -39,6 +39,7 @@ public class ConfigMergeTest {
         String srcRoot = "/foo";
         String dataRoot = "/bar";
         String bugPage = "https://foo/bar";
+        String jiraPage = "https://jira/bar";
 
         Configuration cfgBase = new Configuration();
         cfgBase.setSourceRoot(srcRoot);
@@ -46,11 +47,13 @@ public class ConfigMergeTest {
 
         Configuration cfgNew = new Configuration();
         cfgNew.setBugPage(bugPage);
+        cfgNew.setJiraPage(jiraPage);
 
         merge(cfgBase, cfgNew);
 
         assertEquals(cfgNew.getSourceRoot(), srcRoot);
         assertEquals(cfgNew.getDataRoot(), dataRoot);
         assertEquals(cfgNew.getBugPage(), bugPage);
+        assertEquals(cfgNew.getJiraPage(), jiraPage);
     }
 }

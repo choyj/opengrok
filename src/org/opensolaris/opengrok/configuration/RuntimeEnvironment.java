@@ -988,6 +988,9 @@ public final class RuntimeEnvironment {
     public String getBugPage() {
         return threadConfig.get().getBugPage();
     }
+    public String getJiraPage() {
+        return threadConfig.get().getJiraPage();
+    }
 
     /**
      * Sets the bug page for the history listing
@@ -996,6 +999,9 @@ public final class RuntimeEnvironment {
      */
     public void setBugPage(String bugPage) {
         threadConfig.get().setBugPage(bugPage);
+    }
+    public void setJiraPage(String jiraPage) {
+        threadConfig.get().setJiraPage(jiraPage);
     }
 
     /**
@@ -1006,6 +1012,9 @@ public final class RuntimeEnvironment {
     public String getBugPattern() {
         return threadConfig.get().getBugPattern();
     }
+    public String getJiraPattern() {
+        return threadConfig.get().getJiraPattern();
+    }
 
     /**
      * Sets the bug regex for the history listing
@@ -1014,6 +1023,9 @@ public final class RuntimeEnvironment {
      */
     public void setBugPattern(String bugPattern) {
         threadConfig.get().setBugPattern(bugPattern);
+    }
+    public void setJiraPattern(String jiraPattern) {
+        threadConfig.get().setJiraPattern(jiraPattern);
     }
 
     /**

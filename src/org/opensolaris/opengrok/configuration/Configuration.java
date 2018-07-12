@@ -181,7 +181,9 @@ public final class Configuration {
     private String userPage;
     private String userPageSuffix;
     private String bugPage;
+    private String jiraPage;
     private String bugPattern;
+    private String jiraPattern;
     private String reviewPage;
     private String reviewPattern;
     private String webappLAF;
@@ -428,6 +430,7 @@ public final class Configuration {
         setAuthorizationWatchdogEnabled(false);
         //setBugPage("http://bugs.myserver.org/bugdatabase/view_bug.do?bug_id=");
         setBugPattern("\\b([12456789][0-9]{6})\\b");
+        setJiraPattern("\\b([12456789][0-9]{6})\\b");
         setCachePages(5);
         setCommandTimeout(600); // 10 minutes
         setInteractiveCommandTimeout(30);
@@ -954,6 +957,14 @@ public final class Configuration {
         return bugPage;
     }
 
+    public void setJiraPage(String jiraPage) {
+        this.jiraPage = jiraPage;
+    }
+
+    public String getJiraPage() {
+        return jiraPage;
+    }
+
     /**
      * Set the bug pattern to a new value
      *
@@ -971,6 +982,25 @@ public final class Configuration {
 
     public String getBugPattern() {
         return bugPattern;
+    }
+
+    /**
+     * Set the jira pattern to a new value
+     *
+     * @param jiraPattern the new pattern
+     * @throws PatternSyntaxException when the pattern is not a valid regexp or
+     * does not contain at least one capture group and the group does not
+     * contain a single character
+     */
+    public void setJiraPattern(String jiraPattern) throws PatternSyntaxException {
+        if (!jiraPattern.matches(PATTERN_SINGLE_GROUP)) {
+            throw new PatternSyntaxException(PATTERN_MUST_CONTAIN_GROUP, jiraPattern, 0);
+        }
+        this.jiraPattern = Pattern.compile(jiraPattern).toString();
+    }
+
+    public String getJiraPattern() {
+        return jiraPattern;
     }
 
     public String getReviewPage() {

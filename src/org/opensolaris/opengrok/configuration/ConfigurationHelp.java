@@ -126,6 +126,8 @@ public class ConfigurationHelp {
 
         if (setter.getName().equals("setBugPattern")) {
             return "Sample Bug \\#(\\d+)";
+        } else if (setter.getName().equals("setJiraPattern")) {
+            return "Sample Bug \\#(\\d+)";
         } else if (setter.getName().equals("setReviewPattern")) {
             return "Sample Issue \\#(\\d+)";
         } else if (paramType == String.class) {

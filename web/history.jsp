@@ -157,6 +157,9 @@ include file="minisearch.jspf"
         String bugPage = env.getBugPage();
         String bugRegex = env.getBugPattern();
         Pattern bugPattern = Pattern.compile(bugRegex);
+        String jiraPage = env.getJiraPage();
+        String jiraRegex = env.getJiraPattern();
+        Pattern jiraPattern = Pattern.compile(jiraRegex);
         String reviewPage = env.getReviewPage();
         String reviewRegex = env.getReviewPattern();
         Pattern reviewPattern = Pattern.compile(reviewRegex);
@@ -327,10 +330,13 @@ document.domReady.push(function() {domReadyHistory();});
                 String cout = Util.htmlize(entry.getMessage());
 
                 if (bugPage != null && bugPage.length() > 0) {
-                    cout = Util.linkifyPattern(cout, bugPattern, "$1", Util.completeUrl(bugPage + "$1", request));
+                    cout = Util.linkifyPattern(cout, bugPattern, "$1", Util.completeUrl(bugPage + "$2", request));
+                }
+                if (jiraPage != null && jiraPage.length() > 0) {
+                    cout = Util.linkifyPattern(cout, jiraPattern, "$1", Util.completeUrl(jiraPage + "$2", request));
                 }
                 if (reviewPage != null && reviewPage.length() > 0) {
-                    cout = Util.linkifyPattern(cout, reviewPattern, "$1", Util.completeUrl(reviewPage + "$1", request));
+                    cout = Util.linkifyPattern(cout, reviewPattern, "$1", Util.completeUrl(reviewPage + "$2", request));
                 }
                 
                 boolean showSummary = false;
@@ -340,10 +346,13 @@ document.domReady.push(function() {domReadyHistory();});
                     coutSummary = coutSummary.substring(0, summaryLength - 1);
                     coutSummary = Util.htmlize(coutSummary);
                     if (bugPage != null && bugPage.length() > 0) {
-                        coutSummary = Util.linkifyPattern(coutSummary, bugPattern, "$1", Util.completeUrl(bugPage + "$1", request));
+                        coutSummary = Util.linkifyPattern(coutSummary, bugPattern, "$1", Util.completeUrl(bugPage + "$2", request));
+                    }
+                    if (jiraPage != null && jiraPage.length() > 0) {
+                        coutSummary = Util.linkifyPattern(coutSummary, jiraPattern, "$1", Util.completeUrl(jiraPage + "$2", request));
                     }
                     if (reviewPage != null && reviewPage.length() > 0) {
-                        coutSummary = Util.linkifyPattern(coutSummary, reviewPattern, "$1", Util.completeUrl(reviewPage + "$1", request));
+                        coutSummary = Util.linkifyPattern(coutSummary, reviewPattern, "$1", Util.completeUrl(reviewPage + "$2", request));
                     }
                 }
 

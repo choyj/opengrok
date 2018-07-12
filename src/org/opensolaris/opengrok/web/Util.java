@@ -1094,6 +1094,8 @@ public final class Util {
         printTableRow(out, "CTags", env.getCtags());
         printTableRow(out, "Bug page", env.getBugPage());
         printTableRow(out, "Bug pattern", env.getBugPattern());
+        printTableRow(out, "Jira page", env.getJiraPage());
+        printTableRow(out, "Jira pattern", env.getJiraPattern());
         printTableRow(out, "User page", env.getUserPage());
         printTableRow(out, "User page suffix", env.getUserPageSuffix());
         printTableRow(out, "Review page", env.getReviewPage());
